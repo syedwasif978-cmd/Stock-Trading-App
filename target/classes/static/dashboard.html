@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Trading Dashboard</title>
+        <script src="js/demo-mode.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <i class="fas fa-chart-line"></i>
+                <span>Stock Trading Platform</span>
+            </div>
+            <div class="navbar-menu">
+                <a href="/dashboard.html" title="Dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="/portfolio.html" title="Portfolio">
+                    <i class="fas fa-briefcase"></i> Portfolio
+                </a>
+                <a href="/stocks.html" title="Stocks">
+                    <i class="fas fa-list"></i> Stocks
+                </a>
+                <a href="/history.html" title="History">
+                    <i class="fas fa-history"></i> History
+                </a>
+                <a id="adminLink" href="/admin-dashboard.html" title="Admin Panel" style="display: none;">
+                    <i class="fas fa-crown"></i> Admin
+                </a>
+                <button onclick="logout()" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <h1>Welcome, <span id="userName">User</span>! 📈</h1>
+                <p>Here's your trading activity overview</p>
+                <button onclick="loadDashboardData(); loadRecentTransactions();" class="btn-buy" style="margin-bottom: 20px;">
+                    <i class="fas fa-sync-alt"></i> Refresh Data
+                </button>
+                
+                <div class="header-stats">
+                    <div class="stat-card">
+                        <div class="stat-label">💰 Total Balance</div>
+                        <div class="stat-value" id="totalBalance">$0.00</div>
+                        <div class="stat-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-label">📊 Portfolio Value</div>
+                        <div class="stat-value" id="portfolioValue">$0.00</div>
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-label">📈 Profit/Loss</div>
+                        <div class="stat-value" id="profitLoss">$0.00</div>
+                        <div class="stat-icon">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-label">📋 Total Transactions</div>
+                        <div class="stat-value" id="totalTransactions">0</div>
+                        <div class="stat-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section - INTEGRATED ON DASHBOARD -->
+            <div class="charts-section">
+                <!-- Portfolio Distribution Chart -->
+                <div class="chart-card">
+                    <div class="chart-title">
+                        <i class="fas fa-pie-chart"></i> Portfolio Distribution
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="portfolioChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Stock Performance Chart -->
+                <div class="chart-card">
+                    <div class="chart-title">
+                        <i class="fas fa-chart-area"></i> Stock Performance
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Trading Activity Chart -->
+                <div class="chart-card">
+                    <div class="chart-title">
+                        <i class="fas fa-chart-bar"></i> Trading Activity
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="activityChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Balance History Chart -->
+                <div class="chart-card">
+                    <div class="chart-title">
+                        <i class="fas fa-chart-line"></i> Balance History
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="balanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div style="background: var(--primary-white); padding: 30px; border-radius: 15px; margin-bottom: 30px; box-shadow: var(--shadow-medium); border-left: 5px solid var(--primary-yellow);">
+                <h2 style="margin-bottom: 20px; color: var(--text-dark);">
+                    <i class="fas fa-history"></i> Recent Transactions
+                </h2>
+                <div class="table-container">
+                    <table id="recentTransactions">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Stock</th>
+                                <th>Type</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="text-align: center;">
+                                <td colspan="7"><div class="loading"></div> Loading transactions...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

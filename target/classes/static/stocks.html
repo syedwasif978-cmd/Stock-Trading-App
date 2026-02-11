@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks - Stock Trading Platform</title>
+    <script src="js/demo-mode.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <i class="fas fa-chart-line"></i>
+                <span>Stock Trading Platform</span>
+            </div>
+            <div class="navbar-menu">
+                <a href="/dashboard.html" title="Dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="/portfolio.html" title="Portfolio">
+                    <i class="fas fa-briefcase"></i> Portfolio
+                </a>
+                <a href="/stocks.html" title="Stocks">
+                    <i class="fas fa-list"></i> Stocks
+                </a>
+                <a href="/history.html" title="History">
+                    <i class="fas fa-history"></i> History
+                </a>
+                <button onclick="logout()" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="dashboard-header">
+                <h1>Available Stocks</h1>
+                <p>Browse and trade stocks</p>
+            </div>
+
+            <div style="background: var(--primary-white); padding: 30px; border-radius: 15px; margin-bottom: 30px; box-shadow: var(--shadow-medium);">
+                <h2>Stock List</h2>
+                <div class="table-container">
+                    <table id="stocksTable">
+                        <thead>
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Change %</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="5">Loading stocks...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/stocks.js"></script>
+</body>
+</html>
